@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import requests
 import json
-from keys import client_id, api_key, headers
+from keys import client_id, api_key, headers, username
 from geopy import geocoders
 from geopy.geocoders import Nominatim
 from flask import Flask, render_template, request, redirect
@@ -26,7 +26,7 @@ def find_food(category=None, location=None):
     check_category = ["vegan", "vegetarian", "gluten-free", "Vegan", "Vegetarian", "Gluten-free", "Gluten-Free", "gluten-Free"]
     if category not in check_category:
         return json.dumps({'reason': 'bad_category'})
-    geopy_instance = geocoders.GeoNames(username='chowchow')
+    geopy_instance = geocoders.GeoNames(username=username)
 
     check_digit = location.isdigit()
     if check_digit is False:
